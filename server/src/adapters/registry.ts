@@ -73,11 +73,11 @@ import {
   listSkills as hermesListSkills,
   syncSkills as hermesSyncSkills,
   detectModel as detectModelFromHermes,
-} from "hermes-velq-adapter/server";
+} from "hermes-paperclip-adapter/server";
 import {
   agentConfigurationDoc as hermesAgentConfigurationDoc,
   models as hermesModels,
-} from "hermes-velq-adapter";
+} from "hermes-paperclip-adapter";
 import { processAdapter } from "./process/index.js";
 import { httpAdapter } from "./http/index.js";
 

@@ -34,37 +34,37 @@ importers:
       '@clack/prompts':
         specifier: ^0.10.0
         version: 0.10.1
-      '@paperclipai/adapter-claude-local':
+      '@velq/adapter-claude-local':
         specifier: workspace:*
         version: link:../packages/adapters/claude-local
-      '@paperclipai/adapter-codex-local':
+      '@velq/adapter-codex-local':
         specifier: workspace:*
         version: link:../packages/adapters/codex-local
-      '@paperclipai/adapter-cursor-local':
+      '@velq/adapter-cursor-local':
         specifier: workspace:*
         version: link:../packages/adapters/cursor-local
-      '@paperclipai/adapter-gemini-local':
+      '@velq/adapter-gemini-local':
         specifier: workspace:*
         version: link:../packages/adapters/gemini-local
-      '@paperclipai/adapter-openclaw-gateway':
+      '@velq/adapter-openclaw-gateway':
         specifier: workspace:*
         version: link:../packages/adapters/openclaw-gateway
-      '@paperclipai/adapter-opencode-local':
+      '@velq/adapter-opencode-local':
         specifier: workspace:*
         version: link:../packages/adapters/opencode-local
-      '@paperclipai/adapter-pi-local':
+      '@velq/adapter-pi-local':
         specifier: workspace:*
         version: link:../packages/adapters/pi-local
-      '@paperclipai/adapter-utils':
+      '@velq/adapter-utils':
         specifier: workspace:*
         version: link:../packages/adapter-utils
-      '@paperclipai/db':
+      '@velq/db':
         specifier: workspace:*
         version: link:../packages/db
-      '@paperclipai/server':
+      '@velq/server':
         specifier: workspace:*
         version: link:../server
-      '@paperclipai/shared':
+      '@velq/shared':
         specifier: workspace:*
         version: link:../packages/shared
       commander:
@@ -104,7 +104,7 @@ importers:
 
   packages/adapters/claude-local:
     dependencies:
-      '@paperclipai/adapter-utils':
+      '@velq/adapter-utils':
         specifier: workspace:*
         version: link:../../adapter-utils
       picocolors:
@@ -120,7 +120,7 @@ importers:
 
   packages/adapters/codex-local:
     dependencies:
-      '@paperclipai/adapter-utils':
+      '@velq/adapter-utils':
         specifier: workspace:*
         version: link:../../adapter-utils
       picocolors:
@@ -136,7 +136,7 @@ importers:
 
   packages/adapters/cursor-local:
     dependencies:
-      '@paperclipai/adapter-utils':
+      '@velq/adapter-utils':
         specifier: workspace:*
         version: link:../../adapter-utils
       picocolors:
@@ -152,7 +152,7 @@ importers:
 
   packages/adapters/gemini-local:
     dependencies:
-      '@paperclipai/adapter-utils':
+      '@velq/adapter-utils':
         specifier: workspace:*
         version: link:../../adapter-utils
       picocolors:
@@ -168,7 +168,7 @@ importers:
 
   packages/adapters/openclaw-gateway:
     dependencies:
-      '@paperclipai/adapter-utils':
+      '@velq/adapter-utils':
         specifier: workspace:*
         version: link:../../adapter-utils
       picocolors:
@@ -190,7 +190,7 @@ importers:
 
   packages/adapters/opencode-local:
     dependencies:
-      '@paperclipai/adapter-utils':
+      '@velq/adapter-utils':
         specifier: workspace:*
         version: link:../../adapter-utils
       picocolors:
@@ -206,7 +206,7 @@ importers:
 
   packages/adapters/pi-local:
     dependencies:
-      '@paperclipai/adapter-utils':
+      '@velq/adapter-utils':
         specifier: workspace:*
         version: link:../../adapter-utils
       picocolors:
@@ -222,7 +222,7 @@ importers:
 
   packages/db:
     dependencies:
-      '@paperclipai/shared':
+      '@velq/shared':
         specifier: workspace:*
         version: link:../shared
       drizzle-orm:
@@ -251,9 +251,9 @@ importers:
         specifier: ^3.0.5
         version: 3.2.4(@types/debug@4.1.12)(@types/node@24.12.0)(jiti@2.6.1)(jsdom@28.1.0(@noble/hashes@2.0.1))(lightningcss@1.30.2)(tsx@4.21.0)
 
-  packages/plugins/create-paperclip-plugin:
+  packages/plugins/create-velq-plugin:
     dependencies:
-      '@paperclipai/plugin-sdk':
+      '@velq/plugin-sdk':
         specifier: workspace:*
         version: link:../sdk
     devDependencies:
@@ -266,7 +266,7 @@ importers:
 
   packages/plugins/examples/plugin-authoring-smoke-example:
     dependencies:
-      '@paperclipai/plugin-sdk':
+      '@velq/plugin-sdk':
         specifier: workspace:*
         version: link:../../sdk
       react:
@@ -318,7 +318,7 @@ importers:
       '@lezer/highlight':
         specifier: ^1.2.1
         version: 1.2.3
-      '@paperclipai/plugin-sdk':
+      '@velq/plugin-sdk':
         specifier: workspace:*
         version: link:../../sdk
       codemirror:
@@ -349,7 +349,7 @@ importers:
 
   packages/plugins/examples/plugin-hello-world-example:
     dependencies:
-      '@paperclipai/plugin-sdk':
+      '@velq/plugin-sdk':
         specifier: workspace:*
         version: link:../../sdk
     devDependencies:
@@ -374,10 +374,10 @@ importers:
 
   packages/plugins/examples/plugin-kitchen-sink-example:
     dependencies:
-      '@paperclipai/plugin-sdk':
+      '@velq/plugin-sdk':
         specifier: workspace:*
         version: link:../../sdk
-      '@paperclipai/shared':
+      '@velq/shared':
         specifier: workspace:*
         version: link:../../../shared
     devDependencies:
@@ -405,7 +405,7 @@ importers:
 
   packages/plugins/sdk:
     dependencies:
-      '@paperclipai/shared':
+      '@velq/shared':
         specifier: workspace:*
         version: link:../../shared
       react:
@@ -440,37 +440,37 @@ importers:
       '@aws-sdk/client-s3':
         specifier: ^3.888.0
         version: 3.994.0
-      '@paperclipai/adapter-claude-local':
+      '@velq/adapter-claude-local':
         specifier: workspace:*
         version: link:../packages/adapters/claude-local
-      '@paperclipai/adapter-codex-local':
+      '@velq/adapter-codex-local':
         specifier: workspace:*
         version: link:../packages/adapters/codex-local
-      '@paperclipai/adapter-cursor-local':
+      '@velq/adapter-cursor-local':
         specifier: workspace:*
         version: link:../packages/adapters/cursor-local
-      '@paperclipai/adapter-gemini-local':
+      '@velq/adapter-gemini-local':
         specifier: workspace:*
         version: link:../packages/adapters/gemini-local
-      '@paperclipai/adapter-openclaw-gateway':
+      '@velq/adapter-openclaw-gateway':
         specifier: workspace:*
         version: link:../packages/adapters/openclaw-gateway
-      '@paperclipai/adapter-opencode-local':
+      '@velq/adapter-opencode-local':
         specifier: workspace:*
         version: link:../packages/adapters/opencode-local
-      '@paperclipai/adapter-pi-local':
+      '@velq/adapter-pi-local':
         specifier: workspace:*
         version: link:../packages/adapters/pi-local
-      '@paperclipai/adapter-utils':
+      '@velq/adapter-utils':
         specifier: workspace:*
         version: link:../packages/adapter-utils
-      '@paperclipai/db':
+      '@velq/db':
         specifier: workspace:*
         version: link:../packages/db
-      '@paperclipai/plugin-sdk':
+      '@velq/plugin-sdk':
         specifier: workspace:*
         version: link:../packages/plugins/sdk
-      '@paperclipai/shared':
+      '@velq/shared':
         specifier: workspace:*
         version: link:../packages/shared
       ajv:
@@ -594,33 +594,6 @@ importers:
       '@mdxeditor/editor':
         specifier: ^3.52.4
         version: 3.52.4(@codemirror/language@6.12.1)(@lezer/highlight@1.2.3)(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(yjs@13.6.29)
-      '@paperclipai/adapter-claude-local':
-        specifier: workspace:*
-        version: link:../packages/adapters/claude-local
-      '@paperclipai/adapter-codex-local':
-        specifier: workspace:*
-        version: link:../packages/adapters/codex-local
-      '@paperclipai/adapter-cursor-local':
-        specifier: workspace:*
-        version: link:../packages/adapters/cursor-local
-      '@paperclipai/adapter-gemini-local':
-        specifier: workspace:*
-        version: link:../packages/adapters/gemini-local
-      '@paperclipai/adapter-openclaw-gateway':
-        specifier: workspace:*
-        version: link:../packages/adapters/openclaw-gateway
-      '@paperclipai/adapter-opencode-local':
-        specifier: workspace:*
-        version: link:../packages/adapters/opencode-local
-      '@paperclipai/adapter-pi-local':
-        specifier: workspace:*
-        version: link:../packages/adapters/pi-local
-      '@paperclipai/adapter-utils':
-        specifier: workspace:*
-        version: link:../packages/adapter-utils
-      '@paperclipai/shared':
-        specifier: workspace:*
-        version: link:../packages/shared
       '@radix-ui/react-slot':
         specifier: ^1.2.4
         version: 1.2.4(@types/react@19.2.14)(react@19.2.4)
@@ -630,6 +603,33 @@ importers:
       '@tanstack/react-query':
         specifier: ^5.90.21
         version: 5.90.21(react@19.2.4)
+      '@velq/adapter-claude-local':
+        specifier: workspace:*
+        version: link:../packages/adapters/claude-local
+      '@velq/adapter-codex-local':
+        specifier: workspace:*
+        version: link:../packages/adapters/codex-local
+      '@velq/adapter-cursor-local':
+        specifier: workspace:*
+        version: link:../packages/adapters/cursor-local
+      '@velq/adapter-gemini-local':
+        specifier: workspace:*
+        version: link:../packages/adapters/gemini-local
+      '@velq/adapter-openclaw-gateway':
+        specifier: workspace:*
+        version: link:../packages/adapters/openclaw-gateway
+      '@velq/adapter-opencode-local':
+        specifier: workspace:*
+        version: link:../packages/adapters/opencode-local
+      '@velq/adapter-pi-local':
+        specifier: workspace:*
+        version: link:../packages/adapters/pi-local
+      '@velq/adapter-utils':
+        specifier: workspace:*
+        version: link:../packages/adapter-utils
+      '@velq/shared':
+        specifier: workspace:*
+        version: link:../packages/shared
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
