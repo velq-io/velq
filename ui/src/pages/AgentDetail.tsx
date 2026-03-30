@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState, useRef } from "react";
 import { useParams, useNavigate, Link, Navigate, useBeforeUnload } from "@/lib/router";
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { useQuery, useMutation, useQueryClient, useInfiniteQuery } from "@tanstack/react-query";
 import {
   agentsApi,
   type AgentKey,
@@ -566,11 +566,12 @@ export function AgentDetail() {
     enabled: Boolean(resolvedAgentId) && needsDashboardData,
   });
 
-  const { data: heartbeats } = useQuery({
+  const { data: heartbeatsPage } = useQuery({
     queryKey: queryKeys.heartbeats(resolvedCompanyId!, agent?.id ?? undefined),
-    queryFn: () => heartbeatsApi.list(resolvedCompanyId!, agent?.id ?? undefined),
+    queryFn: () => heartbeatsApi.list(resolvedCompanyId!, agent?.id ?? undefined, 200),
     enabled: !!resolvedCompanyId && !!agent?.id && shouldLoadHeartbeats,
   });
+  const heartbeats = heartbeatsPage?.runs;
 
   const { data: allIssues } = useQuery({
     queryKey: [...queryKeys.issues.list(resolvedCompanyId!), "participant-agent", resolvedAgentId ?? "__none__"],
@@ -1029,7 +1030,6 @@ export function AgentDetail() {
 
       {activeView === "runs" && (
         <RunsTab
-          runs={heartbeats ?? []}
           companyId={resolvedCompanyId!}
           agentId={agent.id}
           agentRouteId={canonicalAgentRef}
@@ -2806,15 +2806,15 @@ function RunListItem({ run, isSelected, agentId }: { run: HeartbeatRun; isSelect
   );
 }
 
+const RUNS_PAGE_SIZE = 50;
+
 function RunsTab({
-  runs,
   companyId,
   agentId,
   agentRouteId,
   selectedRunId,
   adapterType,
 }: {
-  runs: HeartbeatRun[];
   companyId: string;
   agentId: string;
   agentRouteId: string;
@@ -2822,19 +2822,78 @@ function RunsTab({
   adapterType: string;
 }) {
   const { isMobile } = useSidebar();
+  const loadMoreRef = useRef<HTMLDivElement>(null);
+
+  const {
+    data,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    isLoading,
+  } = useInfiniteQuery({
+    queryKey: [...queryKeys.heartbeats(companyId, agentId), "infinite"],
+    queryFn: ({ pageParam = 0 }) =>
+      heartbeatsApi.list(companyId, agentId, RUNS_PAGE_SIZE, pageParam as number),
+    getNextPageParam: (lastPage, allPages) => {
+      const loaded = allPages.reduce((sum, p) => sum + p.runs.length, 0);
+      return loaded < lastPage.total ? loaded : undefined;
+    },
+    initialPageParam: 0,
+  });
+
+  // Intersection observer for auto-loading more
+  useEffect(() => {
+    const el = loadMoreRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0]?.isIntersecting && hasNextPage && !isFetchingNextPage) {
+          void fetchNextPage();
+        }
+      },
+      { threshold: 0.1 },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [hasNextPage, isFetchingNextPage, fetchNextPage]);
+
+  const runs = data?.pages.flatMap((p) => p.runs) ?? [];
+  const total = data?.pages[0]?.total ?? 0;
+
+  if (isLoading) {
+    return <p className="text-sm text-muted-foreground">Loading runs…</p>;
+  }
 
   if (runs.length === 0) {
     return <p className="text-sm text-muted-foreground">No runs yet.</p>;
   }
 
-  // Sort by created descending
-  const sorted = [...runs].sort(
-    (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-  );
+  // Already sorted DESC by createdAt from server
+  const effectiveRunId = isMobile ? selectedRunId : (selectedRunId ?? runs[0]?.id ?? null);
+  const selectedRun = runs.find((r) => r.id === effectiveRunId) ?? null;
 
-  // On mobile, don't auto-select so the list shows first; on desktop, auto-select latest
-  const effectiveRunId = isMobile ? selectedRunId : (selectedRunId ?? sorted[0]?.id ?? null);
-  const selectedRun = sorted.find((r) => r.id === effectiveRunId) ?? null;
+  const runList = (
+    <>
+      {runs.map((run) => (
+        <RunListItem
+          key={run.id}
+          run={run}
+          isSelected={run.id === effectiveRunId}
+          agentId={agentRouteId}
+        />
+      ))}
+      {/* Sentinel for infinite scroll */}
+      <div ref={loadMoreRef} className="py-2 text-center text-xs text-muted-foreground">
+        {isFetchingNextPage
+          ? "Loading more…"
+          : hasNextPage
+            ? `${total - runs.length} more runs`
+            : runs.length > 0
+              ? `${runs.length} of ${total} runs`
+              : null}
+      </div>
+    </>
+  );
 
   // Mobile: show either run list OR run detail with back button
   if (isMobile) {
@@ -2854,9 +2913,7 @@ function RunsTab({
     }
     return (
       <div className="border border-border rounded-lg overflow-x-hidden">
-        {sorted.map((run) => (
-          <RunListItem key={run.id} run={run} isSelected={false} agentId={agentRouteId} />
-        ))}
+        {runList}
       </div>
     );
   }
@@ -2870,9 +2927,7 @@ function RunsTab({
         selectedRun ? "w-72" : "w-full",
       )}>
         <div className="sticky top-4 overflow-y-auto" style={{ maxHeight: "calc(100vh - 2rem)" }}>
-        {sorted.map((run) => (
-          <RunListItem key={run.id} run={run} isSelected={run.id === effectiveRunId} agentId={agentRouteId} />
-        ))}
+          {runList}
         </div>
       </div>
 

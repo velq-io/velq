@@ -3665,22 +3665,68 @@ export function heartbeatService(db: Db) {
   }
 
   return {
-    list: async (companyId: string, agentId?: string, limit?: number) => {
-      const query = db
-        .select(heartbeatRunListColumns)
-        .from(heartbeatRuns)
-        .where(
-          agentId
-            ? and(eq(heartbeatRuns.companyId, companyId), eq(heartbeatRuns.agentId, agentId))
-            : eq(heartbeatRuns.companyId, companyId),
-        )
-        .orderBy(desc(heartbeatRuns.createdAt));
+    list: async (companyId: string, agentId?: string, limit = 50, offset = 0) => {
+      const where = agentId
+        ? and(eq(heartbeatRuns.companyId, companyId), eq(heartbeatRuns.agentId, agentId))
+        : eq(heartbeatRuns.companyId, companyId);
 
-      const rows = limit ? await query.limit(limit) : await query;
-      return rows.map((row) => ({
-        ...row,
-        resultJson: summarizeHeartbeatRunResultJson(row.resultJson),
-      }));
+      const [rows, [{ total }]] = await Promise.all([
+        db
+          .select(heartbeatRunListColumns)
+          .from(heartbeatRuns)
+          .where(where)
+          .orderBy(desc(heartbeatRuns.createdAt))
+          .limit(limit)
+          .offset(offset),
+        db
+          .select({ total: sql<number>`count(*)::int` })
+          .from(heartbeatRuns)
+          .where(where),
+      ]);
+
+      return {
+        runs: rows.map((row) => ({
+          ...row,
+          resultJson: summarizeHeartbeatRunResultJson(row.resultJson),
+        })),
+        total: Number(total ?? 0),
+      };
+    },
+
+    stats: async (companyId: string, agentId?: string) => {
+      const where = agentId
+        ? and(eq(heartbeatRuns.companyId, companyId), eq(heartbeatRuns.agentId, agentId))
+        : eq(heartbeatRuns.companyId, companyId);
+
+      const [statusRows, recentFailureRows] = await Promise.all([
+        db
+          .select({ status: heartbeatRuns.status, count: sql<number>`count(*)::int` })
+          .from(heartbeatRuns)
+          .where(where)
+          .groupBy(heartbeatRuns.status),
+        db
+          .select(heartbeatRunListColumns)
+          .from(heartbeatRuns)
+          .where(and(where, eq(heartbeatRuns.status, "error")))
+          .orderBy(desc(heartbeatRuns.createdAt))
+          .limit(10),
+      ]);
+
+      const byStatus: Record<string, number> = {};
+      let total = 0;
+      for (const row of statusRows) {
+        byStatus[row.status] = Number(row.count);
+        total += Number(row.count);
+      }
+
+      return {
+        total,
+        byStatus,
+        recentFailures: recentFailureRows.map((row) => ({
+          ...row,
+          resultJson: summarizeHeartbeatRunResultJson(row.resultJson),
+        })),
+      };
     },
 
     getRun,

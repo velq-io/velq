@@ -90,9 +90,9 @@ export function Agents() {
     enabled: !!selectedCompanyId && effectiveView === "org",
   });
 
-  const { data: runs } = useQuery({
+  const { data: runsData } = useQuery({
     queryKey: queryKeys.heartbeats(selectedCompanyId!),
-    queryFn: () => heartbeatsApi.list(selectedCompanyId!),
+    queryFn: () => heartbeatsApi.list(selectedCompanyId!, undefined, 200),
     enabled: !!selectedCompanyId,
     refetchInterval: 15_000,
   });
@@ -100,7 +100,7 @@ export function Agents() {
   // Map agentId -> first live run + live run count
   const liveRunByAgent = useMemo(() => {
     const map = new Map<string, { runId: string; liveCount: number }>();
-    for (const r of runs ?? []) {
+    for (const r of runsData?.runs ?? []) {
       if (r.status !== "running" && r.status !== "queued") continue;
       const existing = map.get(r.agentId);
       if (existing) {
@@ -110,7 +110,7 @@ export function Agents() {
       map.set(r.agentId, { runId: r.id, liveCount: 1 });
     }
     return map;
-  }, [runs]);
+  }, [runsData]);
 
   const agentMap = useMemo(() => {
     const map = new Map<string, Agent>();

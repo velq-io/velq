@@ -6,6 +6,17 @@ import type {
 } from "@velq/shared";
 import { api } from "./client";
 
+export interface HeartbeatRunPage {
+  runs: HeartbeatRun[];
+  total: number;
+}
+
+export interface HeartbeatRunStats {
+  total: number;
+  byStatus: Record<string, number>;
+  recentFailures: HeartbeatRun[];
+}
+
 export interface ActiveRunForIssue extends HeartbeatRun {
   agentId: string;
   agentName: string;
@@ -27,12 +38,18 @@ export interface LiveRunForIssue {
 }
 
 export const heartbeatsApi = {
-  list: (companyId: string, agentId?: string, limit?: number) => {
+  list: (companyId: string, agentId?: string, limit = 50, offset = 0) => {
     const searchParams = new URLSearchParams();
     if (agentId) searchParams.set("agentId", agentId);
-    if (limit) searchParams.set("limit", String(limit));
+    searchParams.set("limit", String(limit));
+    searchParams.set("offset", String(offset));
+    return api.get<HeartbeatRunPage>(`/companies/${companyId}/heartbeat-runs?${searchParams.toString()}`);
+  },
+  stats: (companyId: string, agentId?: string) => {
+    const searchParams = new URLSearchParams();
+    if (agentId) searchParams.set("agentId", agentId);
     const qs = searchParams.toString();
-    return api.get<HeartbeatRun[]>(`/companies/${companyId}/heartbeat-runs${qs ? `?${qs}` : ""}`);
+    return api.get<HeartbeatRunStats>(`/companies/${companyId}/heartbeat-runs/stats${qs ? `?${qs}` : ""}`);
   },
   get: (runId: string) => api.get<HeartbeatRun>(`/heartbeat-runs/${runId}`),
   events: (runId: string, afterSeq = 0, limit = 200) =>

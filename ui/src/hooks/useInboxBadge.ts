@@ -111,11 +111,12 @@ export function useInboxBadge(companyId: string | null | undefined) {
 
   const mineIssues = useMemo(() => getRecentTouchedIssues(mineIssuesRaw), [mineIssuesRaw]);
 
-  const { data: heartbeatRuns = [] } = useQuery({
+  const { data: heartbeatRunsPage } = useQuery({
     queryKey: queryKeys.heartbeats(companyId!),
-    queryFn: () => heartbeatsApi.list(companyId!),
+    queryFn: () => heartbeatsApi.list(companyId!, undefined, 200),
     enabled: !!companyId,
   });
+  const heartbeatRuns = heartbeatRunsPage?.runs ?? [];
 
   return useMemo(
     () =>
