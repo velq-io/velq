@@ -1,4 +1,4 @@
-# @paperclipai/server
+# @velq/server
 
 ## 0.3.1
 
@@ -6,16 +6,16 @@
 
 - Stable release preparation for 0.3.1
 - Updated dependencies
-  - @paperclipai/adapter-utils@0.3.1
-  - @paperclipai/adapter-claude-local@0.3.1
-  - @paperclipai/adapter-codex-local@0.3.1
-  - @paperclipai/adapter-cursor-local@0.3.1
-  - @paperclipai/adapter-gemini-local@0.3.1
-  - @paperclipai/adapter-openclaw-gateway@0.3.1
-  - @paperclipai/adapter-opencode-local@0.3.1
-  - @paperclipai/adapter-pi-local@0.3.1
-  - @paperclipai/db@0.3.1
-  - @paperclipai/shared@0.3.1
+  - @velq/adapter-utils@0.3.1
+  - @velq/adapter-claude-local@0.3.1
+  - @velq/adapter-codex-local@0.3.1
+  - @velq/adapter-cursor-local@0.3.1
+  - @velq/adapter-gemini-local@0.3.1
+  - @velq/adapter-openclaw-gateway@0.3.1
+  - @velq/adapter-opencode-local@0.3.1
+  - @velq/adapter-pi-local@0.3.1
+  - @velq/db@0.3.1
+  - @velq/shared@0.3.1
 
 ## 0.3.0
 
@@ -27,15 +27,15 @@
 
 - Updated dependencies [6077ae6]
 - Updated dependencies
-  - @paperclipai/shared@0.3.0
-  - @paperclipai/adapter-utils@0.3.0
-  - @paperclipai/adapter-claude-local@0.3.0
-  - @paperclipai/adapter-codex-local@0.3.0
-  - @paperclipai/adapter-cursor-local@0.3.0
-  - @paperclipai/adapter-openclaw-gateway@0.3.0
-  - @paperclipai/adapter-opencode-local@0.3.0
-  - @paperclipai/adapter-pi-local@0.3.0
-  - @paperclipai/db@0.3.0
+  - @velq/shared@0.3.0
+  - @velq/adapter-utils@0.3.0
+  - @velq/adapter-claude-local@0.3.0
+  - @velq/adapter-codex-local@0.3.0
+  - @velq/adapter-cursor-local@0.3.0
+  - @velq/adapter-openclaw-gateway@0.3.0
+  - @velq/adapter-opencode-local@0.3.0
+  - @velq/adapter-pi-local@0.3.0
+  - @velq/db@0.3.0
 
 ## 0.2.7
 
@@ -43,12 +43,12 @@
 
 - Version bump (patch)
 - Updated dependencies
-  - @paperclipai/shared@0.2.7
-  - @paperclipai/adapter-utils@0.2.7
-  - @paperclipai/db@0.2.7
-  - @paperclipai/adapter-claude-local@0.2.7
-  - @paperclipai/adapter-codex-local@0.2.7
-  - @paperclipai/adapter-openclaw@0.2.7
+  - @velq/shared@0.2.7
+  - @velq/adapter-utils@0.2.7
+  - @velq/db@0.2.7
+  - @velq/adapter-claude-local@0.2.7
+  - @velq/adapter-codex-local@0.2.7
+  - @velq/adapter-openclaw@0.2.7
 
 ## 0.2.6
 
@@ -56,12 +56,12 @@
 
 - Version bump (patch)
 - Updated dependencies
-  - @paperclipai/shared@0.2.6
-  - @paperclipai/adapter-utils@0.2.6
-  - @paperclipai/db@0.2.6
-  - @paperclipai/adapter-claude-local@0.2.6
-  - @paperclipai/adapter-codex-local@0.2.6
-  - @paperclipai/adapter-openclaw@0.2.6
+  - @velq/shared@0.2.6
+  - @velq/adapter-utils@0.2.6
+  - @velq/db@0.2.6
+  - @velq/adapter-claude-local@0.2.6
+  - @velq/adapter-codex-local@0.2.6
+  - @velq/adapter-openclaw@0.2.6
 
 ## 0.2.5
 
@@ -69,12 +69,12 @@
 
 - Version bump (patch)
 - Updated dependencies
-  - @paperclipai/shared@0.2.5
-  - @paperclipai/adapter-utils@0.2.5
-  - @paperclipai/db@0.2.5
-  - @paperclipai/adapter-claude-local@0.2.5
-  - @paperclipai/adapter-codex-local@0.2.5
-  - @paperclipai/adapter-openclaw@0.2.5
+  - @velq/shared@0.2.5
+  - @velq/adapter-utils@0.2.5
+  - @velq/db@0.2.5
+  - @velq/adapter-claude-local@0.2.5
+  - @velq/adapter-codex-local@0.2.5
+  - @velq/adapter-openclaw@0.2.5
 
 ## 0.2.4
 
@@ -82,12 +82,12 @@
 
 - Version bump (patch)
 - Updated dependencies
-  - @paperclipai/shared@0.2.4
-  - @paperclipai/adapter-utils@0.2.4
-  - @paperclipai/db@0.2.4
-  - @paperclipai/adapter-claude-local@0.2.4
-  - @paperclipai/adapter-codex-local@0.2.4
-  - @paperclipai/adapter-openclaw@0.2.4
+  - @velq/shared@0.2.4
+  - @velq/adapter-utils@0.2.4
+  - @velq/db@0.2.4
+  - @velq/adapter-claude-local@0.2.4
+  - @velq/adapter-codex-local@0.2.4
+  - @velq/adapter-openclaw@0.2.4
 
 ## 0.2.3
 
@@ -95,12 +95,12 @@
 
 - Version bump (patch)
 - Updated dependencies
-  - @paperclipai/shared@0.2.3
-  - @paperclipai/adapter-utils@0.2.3
-  - @paperclipai/db@0.2.3
-  - @paperclipai/adapter-claude-local@0.2.3
-  - @paperclipai/adapter-codex-local@0.2.3
-  - @paperclipai/adapter-openclaw@0.2.3
+  - @velq/shared@0.2.3
+  - @velq/adapter-utils@0.2.3
+  - @velq/db@0.2.3
+  - @velq/adapter-claude-local@0.2.3
+  - @velq/adapter-codex-local@0.2.3
+  - @velq/adapter-openclaw@0.2.3
 
 ## 0.2.2
 
@@ -108,12 +108,12 @@
 
 - Version bump (patch)
 - Updated dependencies
-  - @paperclipai/shared@0.2.2
-  - @paperclipai/adapter-utils@0.2.2
-  - @paperclipai/db@0.2.2
-  - @paperclipai/adapter-claude-local@0.2.2
-  - @paperclipai/adapter-codex-local@0.2.2
-  - @paperclipai/adapter-openclaw@0.2.2
+  - @velq/shared@0.2.2
+  - @velq/adapter-utils@0.2.2
+  - @velq/db@0.2.2
+  - @velq/adapter-claude-local@0.2.2
+  - @velq/adapter-codex-local@0.2.2
+  - @velq/adapter-openclaw@0.2.2
 
 ## 0.2.1
 
@@ -121,9 +121,9 @@
 
 - Version bump (patch)
 - Updated dependencies
-  - @paperclipai/shared@0.2.1
-  - @paperclipai/adapter-utils@0.2.1
-  - @paperclipai/db@0.2.1
-  - @paperclipai/adapter-claude-local@0.2.1
-  - @paperclipai/adapter-codex-local@0.2.1
-  - @paperclipai/adapter-openclaw@0.2.1
+  - @velq/shared@0.2.1
+  - @velq/adapter-utils@0.2.1
+  - @velq/db@0.2.1
+  - @velq/adapter-claude-local@0.2.1
+  - @velq/adapter-codex-local@0.2.1
+  - @velq/adapter-openclaw@0.2.1

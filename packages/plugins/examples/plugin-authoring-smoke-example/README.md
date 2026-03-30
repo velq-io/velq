@@ -1,6 +1,6 @@
 # Plugin Authoring Smoke Example
 
-A Paperclip plugin
+A Velq plugin
 
 ## Development
 
@@ -11,13 +11,13 @@ pnpm dev:ui         # local dev server with hot-reload events
 pnpm test
 ```
 
-## Install Into Paperclip
+## Install Into Velq
 
 ```bash
-pnpm paperclipai plugin install ./
+pnpm velq plugin install ./
 ```
 
 ## Build Options
 
-- `pnpm build` uses esbuild presets from `@paperclipai/plugin-sdk/bundlers`.
+- `pnpm build` uses esbuild presets from `@velq/plugin-sdk/bundlers`.
 - `pnpm build:rollup` uses rollup presets from the same SDK.

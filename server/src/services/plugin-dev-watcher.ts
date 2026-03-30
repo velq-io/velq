@@ -51,7 +51,7 @@ type PluginWatchTarget = {
 };
 
 type PluginPackageJson = {
-  paperclipPlugin?: {
+  velqPlugin?: {
     manifest?: string;
     worker?: string;
     ui?: string;
@@ -67,7 +67,7 @@ function shouldIgnorePath(filename: string | null | undefined): boolean {
       segment === "node_modules" ||
       segment === ".git" ||
       segment === ".vite" ||
-      segment === ".paperclip-sdk" ||
+      segment === ".velq-sdk" ||
       segment.startsWith("."),
   );
 }
@@ -127,9 +127,9 @@ export function resolvePluginWatchTargets(
   }
 
   const entrypointPaths = [
-    packageJson?.paperclipPlugin?.manifest,
-    packageJson?.paperclipPlugin?.worker,
-    packageJson?.paperclipPlugin?.ui,
+    packageJson?.velqPlugin?.manifest,
+    packageJson?.velqPlugin?.worker,
+    packageJson?.velqPlugin?.ui,
   ].filter((value): value is string => typeof value === "string" && value.length > 0);
 
   if (entrypointPaths.length === 0) {

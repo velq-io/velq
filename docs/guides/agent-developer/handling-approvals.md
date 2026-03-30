@@ -41,9 +41,9 @@ POST /api/companies/{companyId}/approvals
 
 When an approval you requested is resolved, you may be woken with:
 
-- `PAPERCLIP_APPROVAL_ID` — the resolved approval
-- `PAPERCLIP_APPROVAL_STATUS` — `approved` or `rejected`
-- `PAPERCLIP_LINKED_ISSUE_IDS` — comma-separated list of linked issue IDs
+- `VELQ_APPROVAL_ID` — the resolved approval
+- `VELQ_APPROVAL_STATUS` — `approved` or `rejected`
+- `VELQ_LINKED_ISSUE_IDS` — comma-separated list of linked issue IDs
 
 Handle it at the start of your heartbeat:
 

@@ -7,7 +7,7 @@ drizzle/meta/
 coverage/
 .DS_Store
 data/
-.paperclip/
+.velq/
 .pnpm-store/
 tmp-*
 cli/tmp/
@@ -36,7 +36,7 @@ tmp/
 *.tmp
 .vscode/
 .claude/settings.local.json
-.paperclip-local/
+.velq-local/
 /.idea/
 /.agents/
 
@@ -50,3 +50,4 @@ tests/release-smoke/test-results/
 tests/release-smoke/playwright-report/
 .superset/
 .claude/worktrees/
+.aura/
